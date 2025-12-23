@@ -52,6 +52,7 @@ Environment variables override config: `SERVER_PORT`, `SECRET_TOKEN`
 Validates a PO number from an OpenDock webhook.
 
 **Request:**
+
 ```json
 {
   "action": "appointment_created",
@@ -62,12 +63,14 @@ Validates a PO number from an OpenDock webhook.
 ```
 
 **Headers:**
+
 ```
 Authorization: Bearer <secret_token>
 Content-Type: application/json
 ```
 
 **Success (200):**
+
 ```json
 {
   "data": "Appointment with PO Number PO-12345 is valid"
@@ -75,6 +78,7 @@ Content-Type: application/json
 ```
 
 **Error:**
+
 ```json
 {
   "errorMessage": "No records found for PO Number: PO-12345. Please verify the PO number and try again."
@@ -84,31 +88,31 @@ Content-Type: application/json
 ### GET /health
 
 ```json
-{"version":"1.0.0","status":"healthy"}
+{ "version": "1.0.0", "status": "healthy" }
 ```
 
 ## Response Codes
 
-| Code | Description |
-|------|-------------|
-| 200  | PO validated successfully |
+| Code | Description                                 |
+| ---- | ------------------------------------------- |
+| 200  | PO validated successfully                   |
 | 400  | Missing/invalid request fields or PO format |
-| 401  | Invalid or missing Bearer token |
-| 404  | PO number not found |
-| 409  | Multiple PO records found |
-| 503  | Database connection error |
+| 401  | Invalid or missing Bearer token             |
+| 404  | PO number not found                         |
+| 409  | Multiple PO records found                   |
+| 503  | Database connection error                   |
 
 ## Testing with Stub Data
 
 The application runs with `StubRepository` by default for testing:
 
-| PO Number | Result |
-|-----------|--------|
-| `PO-001` to `PO-010` | Valid (200) |
-| `NOTFOUND` | Not found (404) |
-| `MULTI` | Conflict (409) |
-| `ERROR` | DB error (503) |
-| Any other alphanumeric | Valid (200) |
+| PO Number              | Result          |
+| ---------------------- | --------------- |
+| `PO-001` to `PO-010`   | Valid (200)     |
+| `NOTFOUND`             | Not found (404) |
+| `MULTI`                | Conflict (409)  |
+| `ERROR`                | DB error (503)  |
+| Any other alphanumeric | Valid (200)     |
 
 ## Validation Flow
 
@@ -135,4 +139,4 @@ PurchaseOrderRepository
 
 ## License
 
-Proprietary - Pollam in LLC
+Proprietary - Pollamin LLC
